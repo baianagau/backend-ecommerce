@@ -1,18 +1,18 @@
 import passport from "passport";
 import local from "passport-local";
 import UsersModel from "../dao/models/users.model.js";
-import { createHash, isValidPassword, tokenFromCookieExtractor } from "../utils/utils.js";
 import GitHubStrategy from "passport-github2";
 import jwt from 'passport-jwt';
+import { createHash, isValidPassword, tokenFromCookieExtractor } from "../utils/utils.js";
 import { default as token } from 'jsonwebtoken';
 import { UserDTO } from "../dto/users.dto.js";
 
-// JWT
+
 const JWTStrategy = jwt.Strategy;
 const ExtractJWT = jwt.ExtractJwt;
 export const generateToken = user => token.sign({ user }, process.env.AUTH_SECRET, { expiresIn: '1d' })
 
-//LocalStrategy
+
 const LocalStrategy = local.Strategy;
 
 const initializePassport = () => {
